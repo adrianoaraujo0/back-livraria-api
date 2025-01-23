@@ -2,7 +2,6 @@ package com.livraria.api.controller;
 
 import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -46,27 +45,14 @@ public class UserController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> editUser(@PathVariable(value = "id") int id, @RequestBody @Valid UserModelDto userDto){
-	 Optional<UserModel> userOptional =	userService.findUserById(id);
-	  if(userOptional.isEmpty()) {
-		  return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-	  }
-	  
-	  
-	  UserModel userModel = new UserModel();
-	  userModel.setId(userOptional.get().getId());
-	  BeanUtils.copyProperties(userDto, userModel);
-	  
-	  return ResponseEntity.status(HttpStatus.OK).body(userService.save(userModel));
+		  return ResponseEntity.status(HttpStatus.OK).body(userService.edit(id, userDto));
+	 
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") int id){
-		Optional<UserModel> userOptional =	userService.findUserById(id);
-		  if(userOptional.isEmpty()) {
-			  return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-		  }
 		  userService.deleteUser(id);
-		  return ResponseEntity.status(HttpStatus.OK).body("User deleted successfully");
+		  return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso!");
 	}
 	
 	

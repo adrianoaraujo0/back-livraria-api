@@ -13,6 +13,8 @@ public class UserModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	public UserModel(){}
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +24,7 @@ public class UserModel implements Serializable{
 	@Column(nullable = false)
 	private String name;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
 	
 	@Column(nullable = false)
