@@ -35,7 +35,7 @@ public class BookModel implements Serializable {
 	private LocalDate release;
 	
 	@Column
-	private String quantity;
+	private int quantity;
 
 	@Column
 	private int totalRented;
@@ -45,72 +45,58 @@ public class BookModel implements Serializable {
 	private EditoraModel publisher;
 
 	public int getId() {
-		System.out.println("1");
 		return id;
 	}
 
 	public void setId(int id) {
-		System.out.println("2");
 		this.id = id;
 	}
 
 	public String getName() {
-		System.out.println("3");
 		return name;
 	}
 
 	public void setName(String name) {
-		System.out.println("4");
 		this.name = name;
 	}
 
 	public String getAuthor() {
-		System.out.println("5");
 		return author;
 	}
 
 	public void setAuthor(String author) {
-		System.out.println("6");
 		this.author = author;
 	}
 
 	public LocalDate getRelease() {
-		System.out.println("7");
 		return release;
 	}
 
 	public void setRelease(LocalDate release) {
-		System.out.println("8");
 		this.release = release;
 	}
 
-	public String getQuantity() {
-		System.out.println("9");
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String quantity) {
-		System.out.println("10");
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
 	public int getTotalRented() {
-		System.out.println("11");
 		return totalRented;
 	}
 
 	public void setTotalRented(int totalRented) {
-		System.out.println("12");
 		this.totalRented = totalRented;
 	}
 
 	public EditoraModel getPublisher() {
-		System.out.println("13");
 		return publisher;
 	}
 
 	public void setPublisher(EditoraModel publisher) {
-		System.out.println("14");
 		this.publisher = publisher;
 	}
 
@@ -119,8 +105,4 @@ public class BookModel implements Serializable {
 		return "Book [id=" + id + ", name=" + name + ", author=" + author + ", release=" + release + ", quantity="
 				+ quantity + ", totalRented=" + totalRented + ", publisher=" + publisher + "]";
 	}
-	
-	
-	
-	
 }

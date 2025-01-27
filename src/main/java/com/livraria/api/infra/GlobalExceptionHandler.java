@@ -17,6 +17,7 @@ import com.livraria.api.exceptions.BookNotFoundException;
 import com.livraria.api.exceptions.DateInvalidFormatException;
 import com.livraria.api.exceptions.DateIsAfterDateNowException;
 import com.livraria.api.exceptions.RentDateAfterDateNowException;
+import com.livraria.api.exceptions.RentNotFoundException;
 
 
 @ControllerAdvice
@@ -88,12 +89,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		);
 	}
 	
-	@ExceptionHandler(com.livraria.api.exceptions.RentDateAfterDateNowException.class)
+	@ExceptionHandler(RentDateAfterDateNowException.class)
 	private ResponseEntity<RestErrorMessage> RentDateAfterDateNowException(RentDateAfterDateNowException e){
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(
 				new RestErrorMessage(HttpStatus.CONFLICT, e.getMessage())
 		);
 	}
-
+	
+	@ExceptionHandler(RentNotFoundException.class)
+	private ResponseEntity<RestErrorMessage> RentNotFoundException(RentNotFoundException e){
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(
+				new RestErrorMessage(HttpStatus.CONFLICT, e.getMessage())
+				);
+	}
+	
 	
 }
