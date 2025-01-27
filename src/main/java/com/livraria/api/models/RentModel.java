@@ -84,6 +84,12 @@ public class RentModel implements Serializable {
 	public void setUser(UserModel user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "RentModel [id=" + id + ", rentDate=" + rentDate + ", returnDate=" + returnDate + ", forecastDate="
+				+ forecastDate + ", book=" + book + ", user=" + user + "]";
+	}
 	
 	
 

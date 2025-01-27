@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.livraria.api.dto.BookDto;
 import com.livraria.api.exceptions.BookNameAlreadyExistsException;
 import com.livraria.api.exceptions.BookNotFoundException;
+import com.livraria.api.exceptions.BookOutOfStockException;
 import com.livraria.api.exceptions.DateInvalidFormatException;
 import com.livraria.api.exceptions.DateIsAfterDateNowException;
 import com.livraria.api.exceptions.PublisherNotFoundException;
@@ -127,6 +128,21 @@ public class BookService {
 			throw new BookNameAlreadyExistsException();
 		}
 	}
+	
+	public BookModel decrementBook(int id) throws Exception {
+		Optional<BookModel> bookOptional = bookRepository.findById(id);
+		int quantity = bookOptional.get().getQuantity();
+		
+		if(quantity == 0) throw new BookOutOfStockException();
+	
+		bookOptional.get().setQuantity(quantity - 1);
+		BookDto bookDto = new BookDto();
+		BeanUtils.copyProperties(bookOptional.get(), bookDto);
+		edit(bookDto.getId(), bookDto);
+		
+		return bookOptional.get();
+	}
+	
 	
 
 	

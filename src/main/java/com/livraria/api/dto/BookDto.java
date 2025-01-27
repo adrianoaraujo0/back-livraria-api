@@ -22,8 +22,8 @@ public class BookDto {
     @JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate release;
 	
-	@NotBlank(message = "A quantidade de livros é obrigátoria!")
-	private String quantity;
+	@NotNull(message = "A quantidade de livros é obrigátoria!")
+	private int quantity;
 
 	@NotNull(message = "O número total de livros vendidos é obrigatório")
 	private int totalRented;
@@ -63,11 +63,11 @@ public class BookDto {
 		this.release = release;
 	}
 
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
