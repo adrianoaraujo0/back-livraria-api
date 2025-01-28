@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +24,6 @@ public class RentModel implements Serializable {
 	private int id;
 	
 	@Column
-	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate rentDate;
 	
 	@Column

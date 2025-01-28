@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.livraria.api.dto.BookDto;
+import com.livraria.api.models.BookModel;
 import com.livraria.api.service.BookService;
 import com.livraria.api.service.EditoraService;
 
@@ -44,7 +45,7 @@ public class BookController {
 			@ApiResponse(responseCode = "200", description = "Livros carregados com sucesso.")
 	})
 	@GetMapping
-	public ResponseEntity<List<BookDto>> getAllBooks(){
+	public ResponseEntity<List<BookModel>> getAllBooks(){
 		return ResponseEntity.status(HttpStatus.OK).body(bookService.getAllBooks());
 	}
 	

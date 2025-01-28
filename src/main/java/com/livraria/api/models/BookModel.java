@@ -31,7 +31,6 @@ public class BookModel implements Serializable {
 	private String author;
 	
 	@Column
-	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate release;
 	
 	@Column

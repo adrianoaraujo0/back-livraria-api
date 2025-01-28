@@ -10,7 +10,6 @@ import jakarta.validation.constraints.NotNull;
 
 public class BookDto {
 	
-	private int id;
 	
 	@NotBlank(message = "O nome do livro é obrigatório!")
 	private String name;
@@ -19,7 +18,6 @@ public class BookDto {
 	private String author;
 	
     @NotNull(message = "A data de lançamento é obrigatória!")
-    @JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate release;
 	
 	@NotNull(message = "A quantidade de livros é obrigátoria!")
@@ -30,14 +28,6 @@ public class BookDto {
 	
 	@NotNull(message = "Escolha uma editora!")
 	private EditoraModel publisher;
-	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;

@@ -29,7 +29,7 @@ public class BookService {
 	@Autowired
 	EditoraRepository editoraRepository;
 	
-	public List<BookDto> getAllBooks(){
+	public List<BookModel> getAllBooks(){
 		List<BookModel> books = bookRepository.findAll();
 		List<BookDto> booksDto = new ArrayList<>();;
 		
@@ -39,10 +39,10 @@ public class BookService {
 			booksDto.add(bookDto);
 		});
 		
-		return booksDto;
+		return books;
 	}
 	
-	public BookDto save(BookDto bookDto) {
+	public BookModel save(BookDto bookDto) {
 		 verifyIfBookIsRepeat(bookDto);
 		 verifyIfPublisherExists(bookDto);
 		 verifyIfReleaseIsAfterDateNow(bookDto);
@@ -53,14 +53,12 @@ public class BookService {
 		 
 		 BookModel bookSaved = bookRepository.save(book);
 		 
-		 bookDto.setId(bookSaved.getId());
-		
-		return bookDto;
+		return bookSaved;
 	} 
 	
 	
 	
-	public BookDto edit(int id, BookDto bookDto) throws Exception  {
+	public BookModel edit(int id, BookDto bookDto) throws Exception  {
 		verifyIfPublisherExists(bookDto);
 		verifyIfTheBookNameIsUsedInAnotherBook(id, bookDto);
 		validateDateTime(bookDto.getRelease().toString());
@@ -68,10 +66,9 @@ public class BookService {
 		BookModel book = new BookModel();
 		BeanUtils.copyProperties(bookDto, book);
 		book.setId(id);
-		bookDto.setId(id);
-		bookRepository.save(book);
+	BookModel bookSaved =bookRepository.save(book);
 		 
-		return bookDto;
+		return bookSaved;
 	}
 	
 	
@@ -138,7 +135,7 @@ public class BookService {
 		bookOptional.get().setQuantity(quantity - 1);
 		BookDto bookDto = new BookDto();
 		BeanUtils.copyProperties(bookOptional.get(), bookDto);
-		edit(bookDto.getId(), bookDto);
+		edit(id, bookDto);
 		
 		return bookOptional.get();
 	}
