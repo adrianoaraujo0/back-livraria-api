@@ -46,7 +46,6 @@ public class RentService {
 		BeanUtils.copyProperties(rentDto, rent);
 		
 		rent = rentRepository.save(rent);
-		rentDto.setId(rent.getId());
 		return rent;
 	}
 	
@@ -59,6 +58,7 @@ public class RentService {
 	
 	public RentModel edit(int id, RentDto rentDto) throws Exception{
 		rentExists(id);
+		
 		rentDto.setId(id);
 		return save(rentDto);
 	}

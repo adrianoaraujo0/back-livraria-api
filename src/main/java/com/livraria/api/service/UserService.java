@@ -19,26 +19,34 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public UserModel save(UserModel user) {
+	public UserModel save(UserModelDto user) {
 	    Optional<UserModel> userOptional = userRepository.findByEmail(user.getEmail());
 	    
 	    if(userOptional.isPresent()){
 	    	throw new UserEmailAlredyExistsException();
 	    }
 	    
-		return userRepository.save(user);
+	    UserModel userModel = new UserModel();
+	    
+	    BeanUtils.copyProperties(user, userModel);
+	    
+		return userRepository.save(userModel);
 	}
 	
 	
 	public UserModel edit(int id, UserModelDto userDto) {
 	  UserModel userFinded = findUserById(id).get();
 	  Optional<UserModel> userOptional = userRepository.findByEmail(userDto.getEmail());
+	  boolean emailExists = userOptional.isPresent();
 	  
 	  UserModel userModel = new UserModel();
 	  userModel.setId(userFinded.getId());
 	  BeanUtils.copyProperties(userDto, userModel);
 	  
-	  if(userFinded.getEmail() != userDto.getEmail() && userOptional.isPresent()) {
+	  System.out.println(userFinded.getEmail());
+	  System.out.println(userDto.getEmail());
+	  
+	  if(!userDto.getEmail().equals(userFinded.getEmail()) && emailExists) {
 		  throw new UserEmailAlredyExistsException();
 	  }
 	  

@@ -7,23 +7,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.livraria.api.models.BookModel;
 import com.livraria.api.models.UserModel;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 
 public class RentDto {
 	
+	
+	@JsonIgnore
 	private int id;
 	
 	@NotNull(message = "Esse campo é obrigatório!")
-	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate rentDate;
 	
 	@JsonIgnore
-	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate returnDate;
 	
 	@JsonIgnore
-	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate forecastDate;
+	
 	
 	@NotNull(message = "Esse campo é obrigatório!")
 	private BookModel book;

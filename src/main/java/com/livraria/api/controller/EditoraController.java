@@ -17,11 +17,16 @@ import com.livraria.api.dto.EditoraDto;
 import com.livraria.api.models.EditoraModel;
 import com.livraria.api.service.EditoraService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/livraria-api/editora")
+@Tag(name = "Editora")
 public class EditoraController {
 
 	EditoraService editoraService;
@@ -30,23 +35,38 @@ public class EditoraController {
 		this.editoraService = editoraService;
 	}
 	
-	
+	@Operation(summary = "Pegar todas as editoras")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Dados carregados com sucesso.")
+	})
 	@GetMapping
 	public ResponseEntity<List<EditoraModel>> getAllEditoras(){
 		return ResponseEntity.status(HttpStatus.OK).body(editoraService.getAllEditoras());
 	}
 	
+	@Operation(summary = "Salvar editora")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Editora salva com sucesso.")
+	})
 	@PostMapping
 	public ResponseEntity<Object> saveEditora(@RequestBody @Valid EditoraModel editora){
 		return ResponseEntity.status(HttpStatus.CREATED).body(editoraService.saveEditora(editora));
 	}
 	
 	
+	@Operation(summary = "Editar editora")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Editora editada com sucesso.")
+	})
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> editEditora(@PathVariable(value = "id") int id, @RequestBody @Valid EditoraDto editoraDto){	
 		return ResponseEntity.status(HttpStatus.OK).body(editoraService.editEditora(id, editoraDto));
 	}
 	
+	@Operation(summary = "Excluir editora")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Editora excluída com sucesso.")
+	})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deleteEditora(@PathVariable(value = "id") int id){
 		editoraService.deleteEditora(id);
