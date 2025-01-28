@@ -49,7 +49,7 @@ public class UserController {
 			@ApiResponse(responseCode = "200", description = "Usuário salvo com sucesso")
 	})
 	@PostMapping 
-	public ResponseEntity<Object> saveUser(@RequestBody @Valid UserModel user){
+	public ResponseEntity<Object> saveUser(@RequestBody @Valid UserModelDto user){
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
 	}
 	

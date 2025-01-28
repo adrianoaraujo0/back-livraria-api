@@ -11,6 +11,8 @@ import jakarta.validation.constraints.NotNull;
 
 public class RentDto {
 	
+	
+	@JsonIgnore
 	private int id;
 	
 	@NotNull(message = "Esse campo é obrigatório!")

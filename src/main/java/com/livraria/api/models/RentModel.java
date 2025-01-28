@@ -3,6 +3,8 @@ package com.livraria.api.models;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ public class RentModel implements Serializable {
 	private int id;
 	
 	@Column
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate rentDate;
 	
 	@Column
