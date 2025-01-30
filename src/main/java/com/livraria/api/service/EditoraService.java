@@ -40,14 +40,18 @@ public class EditoraService {
 		return findEditoryById(id).isPresent();
 	}
 	
-	public EditoraModel saveEditora(EditoraModel editora) {
-		Optional<EditoraModel> editoraOptional = editoraRepository.findByNome(editora.getNome());
+	public EditoraModel saveEditora(EditoraDto editoraDto) {
+		Optional<EditoraModel> editoraOptional = editoraRepository.findByNome(editoraDto.getNome());
 		
 		if(editoraOptional.isPresent()) {
 			throw new PublisherNameAlreadyExistsException();
 		}
 		
-		return editoraRepository.save(editora);
+		EditoraModel model = new EditoraModel();
+		BeanUtils.copyProperties(editoraDto, model);
+		
+		
+		return editoraRepository.save(model);
 	}
 	
 	public EditoraModel editEditora(int id, EditoraDto editoraDto) {

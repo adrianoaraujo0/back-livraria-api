@@ -49,8 +49,8 @@ public class EditoraController {
 			@ApiResponse(responseCode = "200", description = "Editora salva com sucesso.")
 	})
 	@PostMapping
-	public ResponseEntity<Object> saveEditora(@RequestBody @Valid EditoraModel editora){
-		return ResponseEntity.status(HttpStatus.CREATED).body(editoraService.saveEditora(editora));
+	public ResponseEntity<Object> saveEditora(@RequestBody @Valid EditoraDto editoraDto){
+		return ResponseEntity.status(HttpStatus.CREATED).body(editoraService.saveEditora(editoraDto));
 	}
 	
 	
