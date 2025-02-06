@@ -34,6 +34,14 @@ public class UserController {
 		this.userService = userService;
 	}
 	
+	@Operation(summary = "EndPoint Teste")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Testar API.")
+	})
+	@GetMapping("hello")
+	public ResponseEntity<Object> helloWorld(){
+		return ResponseEntity.status(HttpStatus.OK).body("HELLO WORLD!!!!!!!!");
+	}
 	
 	@Operation(summary = "Pegar todos os usuários")
 	@ApiResponses(value = {
