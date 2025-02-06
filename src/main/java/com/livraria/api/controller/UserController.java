@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.livraria.api.dto.UserModelDto;
 import com.livraria.api.service.UserService;
 
-//import io.swagger.v3.oas.annotations.Operation;
-//import io.swagger.v3.oas.annotations.responses.ApiResponse;
-//import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -33,37 +33,37 @@ public class UserController {
 		this.userService = userService;
 	}
 	
-//	@Operation(summary = "EndPoint Teste")
-//	@ApiResponses(value = {
-//			@ApiResponse(responseCode = "200", description = "Testar API.")
-//	})
+	@Operation(summary = "EndPoint Teste")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Testar API.")
+	})
 	@GetMapping("hello")
 	public ResponseEntity<Object> helloWorld(){
 		return ResponseEntity.status(HttpStatus.OK).body("HELLO WORLD!!!!!!!!");
 	}
 	
-//	@Operation(summary = "Pegar todos os usuários")
-//	@ApiResponses(value = {
-//			@ApiResponse(responseCode = "200", description = "Usuário carregados com sucesso.")
-//	})
+	@Operation(summary = "Pegar todos os usuários")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Usuário carregados com sucesso.")
+	})
 	@GetMapping
 	public ResponseEntity<Object> getUsers(){
 		return ResponseEntity.status(HttpStatus.OK).body(userService.getUsers());
 	}
 	
-//	@Operation(summary = "Salvar usuário")
-//	@ApiResponses(value = {
-//			@ApiResponse(responseCode = "200", description = "Usuário salvo com sucesso")
-//	})
+	@Operation(summary = "Salvar usuário")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Usuário salvo com sucesso")
+	})
 	@PostMapping 
 	public ResponseEntity<Object> saveUser(@RequestBody @Valid UserModelDto user){
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
 	}
 	
-//	@Operation(summary = "Editar usuário")
-//	@ApiResponses(value = {
-//			@ApiResponse(responseCode = "200", description = "Usuário editado com sucesso")
-//	})
+	@Operation(summary = "Editar usuário")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Usuário editado com sucesso")
+	})
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> editUser(@PathVariable(value = "id") int id, @RequestBody @Valid UserModelDto userDto){
 		  return ResponseEntity.status(HttpStatus.OK).body(userService.edit(id, userDto));
@@ -71,10 +71,10 @@ public class UserController {
 	}
 	
 	
-//	@Operation(summary = "Excluir usuário")
-//	@ApiResponses(value = {
-//			@ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso")
-//	})
+	@Operation(summary = "Excluir usuário")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso")
+	})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") int id){
 		  userService.deleteUser(id);
