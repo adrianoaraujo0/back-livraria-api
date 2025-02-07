@@ -1,28 +1,48 @@
-Este projeto permite gerenciar as operações de aluguel e cadastro de livros de uma livraria. Ele foi projetado para ser simples, eficiente e modular, seguindo boas práticas de desenvolvimento.
+### Este projeto permite gerenciar as operações de aluguel e cadastro de livros de uma livraria. Ele foi projetado para ser simples, eficiente e modular, seguindo boas práticas de desenvolvimento.
 
-#Tecnologias Utilizadas
-Java (versão X)
-Spring Boot (versão X)
-Spring Data JPA (caso use banco de dados)
-Banco de Dados (MySQL/PostgreSQL/etc.)
-Maven/Gradle
+# Tecnologias Utilizadas
+- Java (versão 21.0.5)
+- Spring Boot (versão 3.3.6)
+- Banco de Dados (PostgreSQL)
+- Maven
 
+  
 
+## Recursos
+- CRUD de Livros: Permite criar, listar, atualizar e excluir livros.
 
-##Recursos
+- Documentação da API: Integrado com Swagger para documentação interativa.
 
-*CRUD de Livros: Permite criar, listar, atualizar e excluir livros.
+## Url
+> https://back-livraria-api-production.up.railway.app/swagger-ui/index.html#/
 
-*CRUD de Aluguéis: Gerencia o aluguel de livros.
+## Serviços
+| Método  | Rota            | Descrição                        |
+|---------|----------------|----------------------------------|
+| `GET`   | `/livraria-api/user`   | Listar todos os usuários         |
+| `POST`  | `/livraria-api/user`   | Adicionar um usuário            |
+| `PUT`   | `/livraria-api/user` | Alterar um usuário |
+| `DELETE`   | `/livraria-api/user` | Deletar um usuário             |
+|---------|----------------|----------------------------------|
+| `GET`   | `/livraria-api/rent`   | Listar todos os alugueis         |
+| `POST`  | `/livraria-api/rent`   | Adicionar um aluguel            |
+| `PUT`   | `/livraria-api/rent` | Alterar um aluguel |
+| `DELETE`   | `/livraria-api/rent` | Deletar um aluguel             |
+|---------|----------------|----------------------------------|
+| `GET`   | `/livraria-api/publisher`   | Listar todos os alugueis         |
+| `POST`  | `/livraria-api/publisher`   | Adicionar um aluguel            |
+| `PUT`   | `/livraria-api/publisher` | Alterar um aluguel |
+| `DELETE`   | `/livraria-api/publisher` | Deletar um aluguel             |
+|---------|----------------|----------------------------------|
+| `GET`   | `/livraria-api/book`   | Listar todos os livros         |
+| `POST`  | `/livraria-api/book`   | Adicionar um livro            |
+| `PUT`   | `/livraria-api/book` | Alterar um livro |
+| `DELETE`   | `/livraria-api/book` | Deletar um livro             |
 
-*Validações: Usa Spring Validation para garantir a integridade dos dados.
+## Requisitos para Executar o Projeto
 
-*Documentação da API: Integrado com Swagger para documentação interativa.
+- Java 21 instalado
 
-##Requisitos para Executar o Projeto
+- Maven instalado
 
-*Java 21 instalado
-
-*Maven instalado
-
-*PostgreSQL configurado
+- PostgreSQL configurado
