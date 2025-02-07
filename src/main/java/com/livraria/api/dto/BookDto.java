@@ -27,6 +27,7 @@ public class BookDto {
 	private int totalRented;
 	
 	@NotNull(message = "Escolha uma editora!")
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private EditoraModel publisher;
 
 	public String getName() {
