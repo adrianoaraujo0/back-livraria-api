@@ -25,7 +25,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/livraria-api/editora")
+@RequestMapping("/livraria-api/publisher")
 @Tag(name = "Editora")
 public class EditoraController {
 
