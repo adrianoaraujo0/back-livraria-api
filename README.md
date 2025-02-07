@@ -13,6 +13,9 @@
 
 - Documentação da API: Integrado com Swagger para documentação interativa.
 
+## Url
+> https://back-livraria-api-production.up.railway.app/swagger-ui/index.html#/
+
 ## Serviços
 | Método  | Rota            | Descrição                        |
 |---------|----------------|----------------------------------|
