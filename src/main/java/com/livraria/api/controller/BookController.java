@@ -55,7 +55,7 @@ public class BookController {
 			@ApiResponse(responseCode = "200", description = "Livro salvo com sucesso.")
 	})
 	@PostMapping
-	public ResponseEntity<Object> saveBook(@RequestBody @Valid BookDto bookDto){	
+	public ResponseEntity<BookModel> saveBook(@RequestBody @Valid BookDto bookDto){	
 			return ResponseEntity.status(HttpStatus.CREATED).body(bookService.save(bookDto));
 	}
 	
@@ -65,17 +65,17 @@ public class BookController {
 			@ApiResponse(responseCode = "200", description = "Livro editado com sucesso.")
 	})
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> editBook(@PathVariable(value = "id") int id, @RequestBody @Valid BookDto bookDto) throws Exception{
+	public ResponseEntity<BookModel> editBook(@PathVariable(value = "id") int id, @RequestBody @Valid BookDto bookDto) throws Exception{
 		return ResponseEntity.status(HttpStatus.OK).body(bookService.edit(id, bookDto));
 	}
 	
 	
 	@Operation(summary = "Excluir livro")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Livro excluído com sucesso.")
+			@ApiResponse(responseCode = "200", description = "Livro deletado com sucesso!")
 	})
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteBook(@PathVariable(value = "id") int id){
+	public ResponseEntity<String> deleteBook(@PathVariable(value = "id") int id){
 		bookService.delete(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Livro deletado com sucesso!");
 	}
