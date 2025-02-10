@@ -25,12 +25,12 @@ public class UserService {
 	    if(userOptional.isPresent()){
 	    	throw new UserEmailAlredyExistsException();
 	    }
-	    
+
 	    UserModel userModel = new UserModel();
 	    
 	    BeanUtils.copyProperties(user, userModel);
-	    
-		return userRepository.save(userModel);
+
+	    return userRepository.save(userModel);
 	}
 	
 	

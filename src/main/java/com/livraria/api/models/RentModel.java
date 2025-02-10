@@ -24,12 +24,15 @@ public class RentModel implements Serializable {
 	private int id;
 	
 	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private LocalDate rentDate;
 	
 	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private LocalDate returnDate;
 	
 	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private LocalDate forecastDate;
 	
 	@ManyToOne

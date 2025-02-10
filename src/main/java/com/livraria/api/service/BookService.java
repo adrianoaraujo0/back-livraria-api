@@ -129,10 +129,13 @@ public class BookService {
 	public BookModel decrementBook(int id) throws Exception {
 		Optional<BookModel> bookOptional = bookRepository.findById(id);
 		int quantity = bookOptional.get().getQuantity();
+		int totalRented = bookOptional.get().getTotalRented();
 		
 		if(quantity == 0) throw new BookOutOfStockException();
 	
 		bookOptional.get().setQuantity(quantity - 1);
+		bookOptional.get().setTotalRented(totalRented + 1);
+		
 		BookDto bookDto = new BookDto();
 		BeanUtils.copyProperties(bookOptional.get(), bookDto);
 		edit(id, bookDto);

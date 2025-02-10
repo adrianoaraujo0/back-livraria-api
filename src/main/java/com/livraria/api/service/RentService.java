@@ -31,7 +31,6 @@ public class RentService {
 	BookService bookService;
 	
 	
-	
 	public RentModel save(RentDto rentDto) throws Exception {
 		verifyIfRentDateIsAfterDateNow(rentDto);
 		userService.findUserById(rentDto.getUser().getId());
@@ -73,9 +72,10 @@ public class RentService {
 	}
 	
 	
-	public void rentExists(int id) {
+	public RentModel rentExists(int id) {
 		Optional<RentModel> rentOptional= rentRepository.findById(id);
 		if(!rentOptional.isPresent()) throw new RentNotFoundException();
+		return rentOptional.get();
 	}
 	
 

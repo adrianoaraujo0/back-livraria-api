@@ -1,11 +1,14 @@
 package com.livraria.api.infra;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.livraria.api.exceptions.PublisherCannotBeDeletedException;
 import com.livraria.api.exceptions.PublisherNameAlreadyExistsException;
@@ -21,7 +24,7 @@ import com.livraria.api.exceptions.RentNotFoundException;
 
 
 @ControllerAdvice
-public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<RestErrorMessage> UserNotFoundException(UserNotFoundException e){
@@ -102,6 +105,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 				new RestErrorMessage(HttpStatus.CONFLICT, e.getMessage())
 				);
 	}
+	
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> HandleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        ex.getBindingResult().getFieldErrors().forEach(error -> {
+            errors.put(error.getField(), error.getDefaultMessage());
+        });
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
 	
 	
 }

@@ -1,20 +1,27 @@
 package com.livraria.api.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class UserModelDto {
 	
 	
-	@NotBlank
+	@NotBlank(message = "O nome do usuário é obrigatório.")
+	@NotNull(message = "Esse campo não pode ser nulo.")
 	private String name;
 	
-	@NotBlank
+	@NotBlank(message = "O campo do email é obrigatório.")
+	@NotNull(message = "Esse campo não pode ser nulo.")
+	@Email(message = "Email inválido.")
 	private String email;
 	
-	@NotBlank
+	@NotBlank(message = "O campo do endereço é obrigatório.")
+	@NotNull(message = "Esse campo não pode ser nulo.")
 	private String endereco;
 	
-	@NotBlank
+	@NotBlank(message = "O campo da cidade é obrigatório.")
+	@NotNull(message = "Esse campo não pode ser nulo.")
 	private String cidade;
 
 	public String getName() {

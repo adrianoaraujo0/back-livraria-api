@@ -25,7 +25,6 @@ public class RentDto {
 	@JsonIgnore
 	private LocalDate forecastDate;
 	
-	
 	@NotNull(message = "Esse campo é obrigatório!")
 	private BookModel book;
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.livraria.api.dto.UserModelDto;
+import com.livraria.api.models.UserModel;
 import com.livraria.api.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -47,7 +48,7 @@ public class UserController {
 			@ApiResponse(responseCode = "200", description = "Usuário salvo com sucesso")
 	})
 	@PostMapping 
-	public ResponseEntity<Object> saveUser(@RequestBody @Valid UserModelDto user){
+	public ResponseEntity<UserModel> saveUser(@RequestBody @Valid UserModelDto user){
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
 	}
 	
@@ -67,7 +68,7 @@ public class UserController {
 			@ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso")
 	})
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") int id){
+	public ResponseEntity<String> deleteUser(@PathVariable(value = "id") int id){
 		  userService.deleteUser(id);
 		  return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso!");
 	}

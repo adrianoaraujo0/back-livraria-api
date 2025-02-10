@@ -47,6 +47,15 @@ public class RentController {
 		return ResponseEntity.status(HttpStatus.OK).body(rentService.getAll());
 	}
 	
+	@Operation(summary = "Pegar aluguel por id", method = "GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Dados carregados com sucesso.")
+	})
+	@GetMapping("/{id}")
+	public ResponseEntity<RentModel> getById(@PathVariable(value = "id") int id){
+		return ResponseEntity.status(HttpStatus.OK).body(rentService.rentExists(id));
+	}
+	
 	
 	@Operation(summary = "Salvar aluguel", method = "POST")
 	@ApiResponses(value = {
