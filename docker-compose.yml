@@ -1,0 +1,33 @@
+services:
+  # Serviço do Banco de Dados PostgreSQL
+  db:
+    image: postgres:14
+    container_name: livraria-postgres-db
+    restart: always
+    environment:
+      - POSTGRES_DB=livraria-api-db
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "5432:5432" # Mapeia a porta do container para a sua máquina (opcional, bom para debug)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Garante que os dados do banco não se percam
+
+  # Serviço da sua API Spring Boot
+  api:
+    build: . # Constrói a imagem usando o Dockerfile na pasta atual
+    container_name: livraria-api
+    restart: on-failure
+    depends_on:
+      - db # Garante que o banco de dados inicie antes da API
+    ports:
+      - "8080:8080" # Mapeia a porta da API para a sua máquina
+    environment:
+      # Passa as configurações de conexão para a API
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/livraria-api-db
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+
+volumes:
+  postgres_data:
